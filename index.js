@@ -13,7 +13,7 @@ let hi = greeting();
 hi(); // still can access the message variable
 //More JavaScript Closure example
 function greeting(message) {
-  return function(name) {
+  return function (name) {
     return message + ' ' + name;
   };
 }
@@ -23,21 +23,21 @@ console.log(sayHi('John')); // Hi John
 console.log(sayHello('John')); // Hello John
 //JavaScript closures in a loop
 for (var index = 1; index <= 3; index++) {
-  setTimeout(function() {
+  setTimeout(function () {
     console.log('after ' + index + ' second(s):' + index);
   }, index * 1000);
 }
 //1) Using the IIFE solution
 for (var index = 1; index <= 3; index++) {
-  (function(index) {
-    setTimeout(function() {
+  (function (index) {
+    setTimeout(function () {
       //console.log('AAAfter ' + index + ' second(s):' + index);
     }, index * 1000);
   })(index);
 }
 //2) Using let keyword in ES6
 for (let index = 1; index <= 3; index++) {
-  setTimeout(function() {
+  setTimeout(function () {
     console.log('After ' + index + ' second(s):' + index);
   }, index * 1000);
 }
@@ -48,7 +48,7 @@ appDiv.innerHTML = `<h1>JS Starter</h1>`;
 
 var person = {
   firstName: 'Yasar',
-  lastName: 'Doe'
+  lastName: 'Doe',
 };
 function greet(greeting, message) {
   return `${greeting} ${this.firstName}. ${message}`;
@@ -69,11 +69,11 @@ const computer = {
     ///console.log(this);
     this.isOn = false;
     return `The ${this.name} is Off`;
-  }
+  },
 };
 const server = {
   name: 'Dell PowerEdge T30',
-  isOn: false
+  isOn: false,
 };
 let resul = computer.turnOn.apply(server);
 //console.log(resul);
@@ -85,9 +85,9 @@ function myFunction() {
 }
 var person1 = {
   name: 'John Doe',
-  getName: function() {
+  getName: function () {
     console.log(this.name);
-  }
+  },
 };
 let f = person1.getName;
 setTimeout(f, 1000);
@@ -100,36 +100,36 @@ var btn = document.getElementById('but');
 var button = document.getElementById('butt');
 var list = document.getElementById('test');
 
-button.addEventListener('click', event => {
+button.addEventListener('click', (event) => {
   button.textContent = `Click count: ${event.detail}`;
 });
 
-btn.onclick = function() {
+btn.onclick = function () {
   btn.style.color = 'red';
 };
 
-document.querySelector('#test').addEventListener('click', function(event) {
+document.querySelector('#test').addEventListener('click', function (event) {
   alert('test');
 });
 
-document.querySelectorAll('.list').forEach(element => {
+document.querySelectorAll('.list').forEach((element) => {
   element.addEventListener(
     'mouseover',
-    function(event) {
+    function (event) {
       event.target.style.color = 'orange';
     },
     false
   );
   element.addEventListener(
     'mouseleave',
-    function(event) {
+    function (event) {
       event.target.style.color = 'black';
     },
     false
   );
 });
 
-btn.addEventListener('click', event => {
+btn.addEventListener('click', (event) => {
   btn.textContent = `Click count: ${event.detail}`;
 });
 
@@ -177,3 +177,17 @@ let email = null;
 var num1 = 10,
   num2 = 10;
 //console.log(num1 >= num2);
+
+var COUNT = 0;
+var print = function () {
+  console.log(COUNT);
+  COUNT++;
+};
+function TIME_OUT_MODULE() {
+  var Obj = [setTimeout, setInterval];
+  //var SET = Obj[0](print, 1500);
+  var INERT = Obj[1](print, 100);
+  if (COUNT == 50) {
+    clearInterval(INERT);
+  }
+}
